@@ -16,6 +16,6 @@ branch.
 challenges are being kept in a separate branch. to view them please review the list section
 of the README.md to see the file that was altered and compare it to the master branch.
 
-### List
+# List
 
-Chapter 2: Typeintro.kt
+Chapter 2: TypeIntro.kt
