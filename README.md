@@ -6,7 +6,7 @@ This is a repository for all work done from the training book:
 	by David Greenhalgh and Josh Skeen
 
 All projects are written in IDEA developement IDE by IntelliJ/Jetbrains.
-All code will be in the src folder of each project. the will also have a .kt extension.
+All code will be in the src folder of each project. They will also have a .kt extension.
 All challenges for the book will done in seperate labeled branches. They will not be merged into the master branch. 
 The master branch will hold the code for the chapter prior to the
 challenges. and will end where the chapter ends.
