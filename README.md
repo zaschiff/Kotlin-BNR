@@ -18,7 +18,7 @@ This is a simple project to understand kotlin's types and variable declaration.
 ## NyetHack
 
 This project is built at the beginning of chapter 3. It is introduction of control flow with in kotlin.
-The reason behind Nyethack,from the book's perspective, is that the project will help develop skills in kotlin
+The reason behind Nyethack, from the book's perspective, is that the project will help develop skills in kotlin
 using a text based game similar to the game NetHack from NetHack.org. Since kotlin was designed by Jetbrains and
 they have offices in Russia, the game gets renamed to NyetHack.
 
@@ -30,3 +30,4 @@ of the README.md to see the file that was altered and compare it to the master b
 # List
 
 Chapter 2: TypeIntro.kt
+Chapter 3: Game.kt
