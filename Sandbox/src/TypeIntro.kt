@@ -1,5 +1,5 @@
 /*
-**  Applicaiton: Sandbox
+**  Application: Sandbox
 **  Author: Zach Schiff
 **  Date: 10/05/2019
 **  Version: 1.1
