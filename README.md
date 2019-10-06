@@ -29,5 +29,5 @@ of the README.md to see the file that was altered and compare it to the master b
 
 # List
 
-Chapter 2: TypeIntro.kt
+Chapter 2: TypeIntro.kt  
 Chapter 3: Game.kt
