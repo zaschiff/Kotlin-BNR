@@ -5,13 +5,17 @@ This is a repository for all work done from the training book:
 	Kotlin Programming: The Big Nerd Ranch Guide 
 	by David Greenhalgh and Josh Skeen
 
+All projects are written in IDEA developement IDE by IntelliJ/Jetbrains.
+All code will be in the src folder of each project. the will also have a .kt extension.
+All challenges for the book will done in seperate labeled branches. They will not be merged into the master branch. 
+The master branch will hold the code for the chapter prior to the
+challenges. and will end where the chapter ends.
+
 ## Sandbox
 
-This was a simple project created in the IDEA devlopement IDE from IntelliJ/Jetbrains.
-All code will be written in Kotlin and challenges for this project will be in a separate
-branch.
+This is a simple project to understnad kotlin's types and variable declaration.
 
-### Challenges
+# Challenges
 
 challenges are being kept in a separate branch. to view them please review the list section
 of the README.md to see the file that was altered and compare it to the master branch.
