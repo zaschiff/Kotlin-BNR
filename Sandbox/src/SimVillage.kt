@@ -71,6 +71,21 @@ inline fun runSimulation(playerName: String,
     costPrinter(numBuildings)
     println(greetingFunction(playerName, numBuildings))
 }
+
+anonymous functions have the ability to reach out of scope variables
+the below code doe work
+
+fun runSimulation() {
+    val greetingFunction = configureGreetingFunction()
+    println(greetingFunction("Guyal")
+    println(greetingFunction("Guyal")
+    }
+
+this would return something like this:
+    building 6 hospitals
+    Welcome to SimVillage, Guyal! (copyright 2018)
+    building 7 hospitals
+    Welcome to SimVillage, Guyal! (copyright 2018)
 */
 
 // this function does not do much but set up a function to be returned
