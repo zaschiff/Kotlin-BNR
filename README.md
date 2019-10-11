@@ -13,7 +13,9 @@ challenges. and will end where the chapter ends.
 
 ## Sandbox
 
-This is a simple project to understand kotlin's types and variable declaration.
+This is a simple project to understand kotlin's types and variable declaration....
+
+The new file, SimVillage.kt, is a simple file to demonstrate anonymous functions and the function type.
 
 ## NyetHack
 
