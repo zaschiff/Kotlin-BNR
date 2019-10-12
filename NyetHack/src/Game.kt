@@ -1,3 +1,14 @@
+/*
+*
+* Application: NyetHack/Game.kt
+* Author: Zach Schiff
+* Date: 10/06/2019
+* Version: 1.3
+* Description: NyetHack is a simple text based game to illustrate
+* basic kotlin programming syntax and other kotlin topics.
+*
+ */
+
 fun main(args: Array<String>) {
     val name = "Madrigal"
     var healthPoints = 89
