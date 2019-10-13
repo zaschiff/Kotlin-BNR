@@ -24,8 +24,8 @@ The reason behind Nyethack, from the book's perspective, is that the project wil
 using a text based game similar to the game NetHack from NetHack.org. Since kotlin was designed by Jetbrains and
 they have offices in Russia, the game gets renamed to NyetHack.
 
-Chapters 5 and 6 are disucssion on Anonymous functions, the function type, Null, Nullability, handling null values, 
-and exceptions. There are no challengesat the end of these chapters. To see work done and notes please review the files: 
+Chapters 5 and 6 are discussions on Anonymous functions, the Function type, Null, Nullability, handling null values, 
+and exceptions. There are no challenges at the end of these chapters. To see work done and notes, please review the files: 
 
 	Tavern.kt
 	SwordJuggler.kt
