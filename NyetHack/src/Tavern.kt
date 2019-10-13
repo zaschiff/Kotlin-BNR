@@ -9,9 +9,67 @@
 *
  */
 
+const val TAVERN_NAME = "Taernyl's Folly"
 
 fun main(args: Array<String>) {
+    placeOrder("Shandy,Dragon's Breath,5.91")
+//    placeOrder("Elixir,Shirley's Temple,4.12")
+}
+
+// function to place an order from menu items
+private fun placeOrder(menuData: String) {
+    val indexOfApostrophe = TAVERN_NAME.indexOf('\'')
+    val tavernMaster = TAVERN_NAME.substring(0 until indexOfApostrophe)
+    println("Madrigal speaks with $tavernMaster about their order.")
+
     /*
+     the below info is separating the menu item by the comma(,)
+     and grabs the info via array index notation.
+    val data = menuData.split(',')
+    val type = data[0]
+    val name = data[1]
+    val price = data[2]
+    */
+
+    // using deconstruction, also known assigning multiple variables
+    val (type, name, price) = menuData.split(',')
+    val message = "Madrigal buys a $name ($type) for $price"
+
+    println(message)
+    /*
+        need a check for dragon's breath
+        val phrase = "Ah, delicious $name!"
+        println("Madrigal exclaims: ${toDragonSpeak(phrase)}")
+     */
+
+    val phrase = if (name == "Dragon's Breath") {
+        "Madrigal exclaims ${toDragonSpeak("Ah, delicious $name!")}"
+    } else {
+        "Madrigal says: Thanks for the $name."
+    }
+
+    println(phrase)
+}
+
+//function to show string's replace funtion and make a new dragon
+//speak translator
+private fun toDragonSpeak(phrase : String) =
+    phrase.replace(Regex("[aeiou]")) {
+        when (it.value) {
+            "a" -> "4"
+            "e" -> "3"
+            "i" -> "1"
+            "o" -> "0"
+            "u" -> "|_|"
+            else -> it.value
+        }
+    }
+
+
+    /*
+        NOTES ON NULL, NULLABILITY, SAFE CALLS, AND DEALING WITH NULL VALUES
+
+
      ASSIGNING A NULL VALUE
 
         the below code was an attempted to assign a null value to a
@@ -20,9 +78,9 @@ fun main(args: Array<String>) {
             var signatureDrink = "Buttered Ale"
             signatureDrink = null
 
-    */
 
-    /*
+
+
      SAFECALL OPERATOR (?)
 
        the below code does not run as we have not dealt with the value
@@ -30,9 +88,9 @@ fun main(args: Array<String>) {
        (?.)
 
             var beverage = readLine()?.capitalize()
-    */
 
-    /*
+
+
      LET FUNCTION
 
      the below code use the function of let to run additional code on
@@ -45,10 +103,10 @@ fun main(args: Array<String>) {
                     "Buttered Ale"
                 }
             }
-     */
 
 
-    /*
+
+
      DOUBLE BANG OPERATOR (!!)
 
         the below code uses the double bang operator to assert the desire for
@@ -56,11 +114,11 @@ fun main(args: Array<String>) {
         never be null.
 
              var beverage = readLine()!!.capitalize()
-     */
 
-    // USING != TO CHECK FOR A NULL VALUE
+
+     USING != TO CHECK FOR A NULL VALUE
     var beverage = readLine()
-    //beverage = null
+    beverage = null
 
     if (beverage != null) {
         beverage = beverage.capitalize()
@@ -69,12 +127,12 @@ fun main(args: Array<String>) {
 
     }
 
-    // Below is the null coalescing operator (elvis operator) which says:
-    // "If the thing on the left is null then use the thing on the right."
+     Below is the null coalescing operator (elvis operator) which says:
+     "If the thing on the left is null then use the thing on the right."
     val beverageServed: String = beverage ?: "Buttered Ale"
     println(beverageServed)
 
-    /* When dealing with null there should be an order of choice with handling null
+     When dealing with null there should be an order of choice with handling null
     values.
         Safe call operator -> this can be piped and condensed due
             to smart casting
@@ -87,4 +145,3 @@ fun main(args: Array<String>) {
 
         Double Bang Operator
      */
-}
