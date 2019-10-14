@@ -43,7 +43,7 @@ private fun placeOrder(menuData: String) {
      */
 
     val phrase = if (name == "Dragon's Breath") {
-        "Madrigal exclaims ${toDragonSpeak("Ah, delicious $name!")}"
+        "Madrigal exclaims ${toDragonSpeak("DRAGON'S BREATH: IT'S GOT WHAT ADVENTURERS CRAVE!")}"
     } else {
         "Madrigal says: Thanks for the $name."
     }
@@ -51,16 +51,23 @@ private fun placeOrder(menuData: String) {
     println(phrase)
 }
 
+
+// CHALLENGE: IMPROVING DRAGONSPEAK
 //function to show string's replace funtion and make a new dragon
 //speak translator
 private fun toDragonSpeak(phrase : String) =
-    phrase.replace(Regex("[aeiou]")) {
+    phrase.replace(Regex("[aeiouAEIOU]", RegexOption.IGNORE_CASE)) {
         when (it.value) {
             "a" -> "4"
             "e" -> "3"
             "i" -> "1"
             "o" -> "0"
             "u" -> "|_|"
+            "A" -> "4"
+            "E" -> "3"
+            "I" -> "1"
+            "O" -> "0"
+            "U" -> "|_|"
             else -> it.value
         }
     }
