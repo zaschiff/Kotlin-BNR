@@ -40,4 +40,5 @@ of the README.md to see the file that was altered and compare it to the master b
 Chapter 2: TypeIntro.kt  
 Chapter 3: Game.kt  
 Chapter 4: Game.kt  
-Chapter 7: Tavern.kt
+Chapter 7: Tavern.kt  
+Chapter 8: Tavern.kt

@@ -8,8 +8,13 @@
 * the NULL value.
 *
  */
+import kotlin.math.roundToInt
+
 
 const val TAVERN_NAME = "Taernyl's Folly"
+
+var playerGold = 10
+var playerSilver = 10
 
 fun main(args: Array<String>) {
     placeOrder("Shandy,Dragon's Breath,5.91")
@@ -34,8 +39,10 @@ private fun placeOrder(menuData: String) {
     // using deconstruction, also known assigning multiple variables
     val (type, name, price) = menuData.split(',')
     val message = "Madrigal buys a $name ($type) for $price"
-
     println(message)
+
+    performPurchase(price.toDouble())
+
     /*
         need a check for dragon's breath
         val phrase = "Ah, delicious $name!"
@@ -64,6 +71,26 @@ private fun toDragonSpeak(phrase : String) =
             else -> it.value
         }
     }
+
+fun performPurchase (price: Double) {
+    displayBalance()
+    val totalPurse = playerGold + (playerSilver / 100.0)
+    println("Total purse: $totalPurse")
+    println("Purchasing item for $price")
+
+    val remainingBalance = totalPurse - price
+    println("Remaining balance: ${"%.2f".format(remainingBalance)}")
+
+    val remainingGold = remainingBalance.toInt()
+    val remainingSilver = (remainingBalance %1 * 100).roundToInt()
+    playerGold = remainingGold
+    playerSilver = remainingSilver
+    displayBalance()
+}
+
+private fun displayBalance() {
+    println("Player's purse balance: Gold: $playerGold, Silver: $playerSilver")
+}
 
 
     /*
