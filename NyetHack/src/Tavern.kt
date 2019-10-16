@@ -15,8 +15,6 @@ import java.io.File
 
 const val TAVERN_NAME = "Taernyl's Folly"
 
-var playerGold = 10
-var playerSilver = 10
 val patronList = mutableListOf("Eli", "Mordoc", "Sophie")
 val lastName = listOf("Ironfoot", "Fernsworth", "Baggins")
 val uniquePatrons = mutableSetOf<String>()
@@ -54,6 +52,8 @@ fun main(args: Array<String>) {
             menuList.shuffled().first())
         orderCount++
     }
+
+    displayPatronBalances()
 }
 
 // function to place an order from menu items
@@ -67,7 +67,7 @@ private fun placeOrder(patronName: String, menuData: String) {
     val message = "$patronName buys a $name ($type) for $price"
     println(message)
 
-    //performPurchase(price.toDouble())
+    performPurchase(price.toDouble(), patronName)
 
     val phrase = if (name == "Dragon's Breath") {
         "$patronName exclaims ${toDragonSpeak("Ah, delicious $name!")}"
@@ -76,6 +76,11 @@ private fun placeOrder(patronName: String, menuData: String) {
     }
 
     println(phrase)
+}
+
+private fun performPurchase(price: Double, patronName: String) {
+    val totalPurse = patronGold.getValue(patronName)
+    patronGold[patronName] = totalPurse - price
 }
 
 //function to show string's replace funtion and make a new dragon
@@ -92,25 +97,12 @@ private fun toDragonSpeak(phrase : String) =
         }
     }
 
-fun performPurchase (price: Double) {
-    displayBalance()
-    val totalPurse = playerGold + (playerSilver / 100.0)
-    println("Total purse: $totalPurse")
-    println("Purchasing item for $price")
-
-    val remainingBalance = totalPurse - price
-    println("Remaining balance: ${"%.2f".format(remainingBalance)}")
-
-    val remainingGold = remainingBalance.toInt()
-    val remainingSilver = (remainingBalance %1 * 100).roundToInt()
-    playerGold = remainingGold
-    playerSilver = remainingSilver
-    displayBalance()
+private fun displayPatronBalances() {
+    patronGold.forEach { patron, balance ->
+        println("$patron, balance: ${"%.2f".format(balance)}")
+    }
 }
 
-private fun displayBalance() {
-    println("Player's purse balance: Gold: $playerGold, Silver: $playerSilver")
-}
 
 
     /*
@@ -237,5 +229,27 @@ private fun displayBalance() {
 
     menuList.forEachIndexed { index, data ->
         println("$index : $data")
+    }
+
+   the below functions were tied to one person not the patron's list.
+   new function will be able to utilize the patron's gold map
+   fun performPurchase (price: Double) {
+        displayBalance()
+        val totalPurse = playerGold + (playerSilver / 100.0)
+        println("Total purse: $totalPurse")
+        println("Purchasing item for $price")
+
+        val remainingBalance = totalPurse - price
+        println("Remaining balance: ${"%.2f".format(remainingBalance)}")
+
+        val remainingGold = remainingBalance.toInt()
+        val remainingSilver = (remainingBalance %1 * 100).roundToInt()
+        playerGold = remainingGold
+        playerSilver = remainingSilver
+        displayBalance()
+    }
+
+    private fun displayBalance() {
+        println("Player's purse balance: Gold: $playerGold, Silver: $playerSilver")
     }
     */
