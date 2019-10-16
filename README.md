@@ -44,4 +44,4 @@ Chapter 3: Game.kt
 Chapter 4: Game.kt  
 Chapter 7: Tavern.kt  
 Chapter 8: Tavern.kt  
-Chapter 9: Tavern.kt
+Chapter 10: Tavern.kt
