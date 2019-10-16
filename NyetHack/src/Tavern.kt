@@ -23,6 +23,7 @@ val uniquePatrons = mutableSetOf<String>()
 val menuList = File("data/tavern-menu-items.txt")
     .readText()
     .split("\n")
+val patronGold = mutableMapOf<String, Double>()
 
 fun main(args: Array<String>) {
     (0..9).forEach {
@@ -31,8 +32,22 @@ fun main(args: Array<String>) {
         val name = "$first $last"
         uniquePatrons += name
     }
-    //println(uniquePatrons)
 
+    if (patronList.contains("Eli")) {
+        println("The tavern master says: Eli's in the back playing cards.")
+    } else {
+        println("the tavern mastre says: Eli isn't here")
+    }
+
+    if (patronList.containsAll(listOf("Sophie", "Mordoc"))) {
+        println("The tavern master says: Yea, they're seated by the stew kettle.")
+    } else {
+        println("the tavern master says: Nay, they departed hours ago.")
+    }
+
+    uniquePatrons.forEach {
+        patronGold[it] = 6.0
+    }
     var orderCount = 0
     while (orderCount <= 9) {
         placeOrder(uniquePatrons.shuffled().first(),
@@ -185,19 +200,6 @@ private fun displayBalance() {
     THE COMMENTED OUT CODE BELOW ARE OTHER WAYS TO ACHIEVE SIMILAR
       RESULTS AS THE MAIN FUNCTION
 
-
-    if (patronList.contains("Eli")) {
-        println("The tavern master says: Eli's in the back playing cards.")
-    } else {
-        println("the tavern mastre says: Eli isn't here")
-    }
-
-    if (patronList.containsAll(listOf("Sophie", "Mordoc"))) {
-        println("The tavern master says: Yea, they're seated by the stew kettle.")
-    } else {
-        println("the tavern master says: Nay, they departed hours ago.")
-    }
-
     placeOrder("Elixir,Shirley's Temple,4.12")
 
 
@@ -224,8 +226,7 @@ private fun displayBalance() {
     val name = data[1]
     val price = data[2]
 
-
-        for (patron in patronList) {
+    for (patron in patronList) {
         println("Good evening, $patron")
     }
 
