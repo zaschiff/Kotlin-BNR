@@ -25,13 +25,25 @@ val menuList = File("data/tavern-menu-items.txt")
     .split("\n")
 
 fun main(args: Array<String>) {
+    // CHALLENGE: FORMATTED TAVERN MENU
+    val greeting = "*** Welcome to $TAVERN_NAME ***"
+    val menuWidth = greeting.length
+    println(greeting + "\n")
     (0..9).forEach {
         val first = patronList.shuffled().first()
         val last = lastName.shuffled().first()
         val name = "$first $last"
         uniquePatrons += name
     }
-    //println(uniquePatrons)
+
+    // CHALLENEGE 9: FORMATTED TAVERN MENU
+    for (item in menuList) {
+        val (_, name, price) = item.split(",")
+        val capName = capitalizeWord(name)
+        val pad = menuWidth - price.length
+        val menuItem = capName.capitalize().padEnd(pad, '.') + price
+        println(menuItem)
+    }
 
     var orderCount = 0
     while (orderCount <= 9) {
@@ -41,18 +53,14 @@ fun main(args: Array<String>) {
     }
 }
 
-// function to place an order from menu items
 private fun placeOrder(patronName: String, menuData: String) {
     val indexOfApostrophe = TAVERN_NAME.indexOf('\'')
     val tavernMaster = TAVERN_NAME.substring(0 until indexOfApostrophe)
     println("$patronName speaks with $tavernMaster about their order.")
 
-    // using deconstruction, also known assigning multiple variables
     val (type, name, price) = menuData.split(',')
     val message = "$patronName buys a $name ($type) for $price"
     println(message)
-
-    //performPurchase(price.toDouble())
 
     val phrase = if (name == "Dragon's Breath") {
         "$patronName exclaims ${toDragonSpeak("Ah, delicious $name!")}"
@@ -63,8 +71,6 @@ private fun placeOrder(patronName: String, menuData: String) {
     println(phrase)
 }
 
-//function to show string's replace funtion and make a new dragon
-//speak translator
 private fun toDragonSpeak(phrase : String) =
     phrase.replace(Regex("[aeiou]")) {
         when (it.value) {
@@ -97,144 +103,16 @@ private fun displayBalance() {
     println("Player's purse balance: Gold: $playerGold, Silver: $playerSilver")
 }
 
-
-    /*
-        NOTES ON NULL, NULLABILITY, SAFE CALLS, AND DEALING WITH NULL VALUES
-
-
-     ASSIGNING A NULL VALUE
-
-        the below code was an attempted to assign a null value to a
-        non-nullable type.
-
-            var signatureDrink = "Buttered Ale"
-            signatureDrink = null
-
-
-
-
-     SAFECALL OPERATOR (?)
-
-       the below code does not run as we have not dealt with the value
-       of readline being null. the new code uses the safe call operator
-       (?.)
-
-            var beverage = readLine()?.capitalize()
-
-
-
-     LET FUNCTION
-
-     the below code use the function of let to run additional code on
-     a safe call operator as the safe call only allows one additional
-     function
-            var beverage = readLine()?. let {
-                if (it.isNotBlank()) {
-                    it.capitalize()
-                } else {
-                    "Buttered Ale"
-                }
-            }
-
-
-
-
-     DOUBLE BANG OPERATOR (!!)
-
-        the below code uses the double bang operator to assert the desire for
-        the null pointer exception. This should be used when the viable is known
-        never be null.
-
-             var beverage = readLine()!!.capitalize()
-
-
-     USING != TO CHECK FOR A NULL VALUE
-    var beverage = readLine()
-    beverage = null
-
-    if (beverage != null) {
-        beverage = beverage.capitalize()
-    } else {
-        println("I can't do that without crashing - beverage was null!")
-
+private fun capitalizeWord(text: String): String{
+    var capText = ""
+    val words = text.split(" ").toMutableList()
+    for (word in words) {
+        if (word.length > 2) {
+            capText += word.capitalize() + " "
+        } else {
+            capText += word + " "
+        }
     }
-
-     Below is the null coalescing operator (elvis operator) which says:
-     "If the thing on the left is null then use the thing on the right."
-    val beverageServed: String = beverage ?: "Buttered Ale"
-    println(beverageServed)
-
-     When dealing with null there should be an order of choice with handling null
-    values.
-        Safe call operator -> this can be piped and condensed due
-            to smart casting
-
-        If-else or != null check -> should be use when more complex and
-            intricate logic is need for when a value is null or not
-
-        Let function -> quick check that allows more intricate logic than a simple
-            pipe but not as intricate as what can be done with the if else
-
-        Double Bang Operator
-
-      lists are either mutable or not depending on the type of list called.
-
-    */
-
-    /*
-    THE COMMENTED OUT CODE BELOW ARE OTHER WAYS TO ACHIEVE SIMILAR
-      RESULTS AS THE MAIN FUNCTION
-
-
-    if (patronList.contains("Eli")) {
-        println("The tavern master says: Eli's in the back playing cards.")
-    } else {
-        println("the tavern mastre says: Eli isn't here")
-    }
-
-    if (patronList.containsAll(listOf("Sophie", "Mordoc"))) {
-        println("The tavern master says: Yea, they're seated by the stew kettle.")
-    } else {
-        println("the tavern master says: Nay, they departed hours ago.")
-    }
-
-    placeOrder("Elixir,Shirley's Temple,4.12")
-
-
-    println(patronList)
-    patronList.remove("Eli")
-    patronList.add("Alex")
-    patronList.add(0, "Alex")
-    patronList[0] = "Alexis"
-    println(patronList)
-
-
-
-
-
-    need a check for dragon's breath
-    val phrase = "Ah, delicious $name!"
-    println("Madrigal exclaims: ${toDragonSpeak(phrase)}")
-
-
-     the below info is separating the menu item by the comma(,)
-     and grabs the info via array index notation.
-    val data = menuData.split(',')
-    val type = data[0]
-    val name = data[1]
-    val price = data[2]
-
-
-        for (patron in patronList) {
-        println("Good evening, $patron")
-    }
-
-    patronList.forEachIndexed { index, patron ->
-        println("Good evening, $patron - you're #${index + 1} in line. ")
-        placeOrder(patron, menuList.shuffled().first())
-    }
-
-    menuList.forEachIndexed { index, data ->
-        println("$index : $data")
-    }
-    */
+    capText = capText.trim()
+    return capText
+}
