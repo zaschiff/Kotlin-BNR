@@ -8,51 +8,56 @@
 * the NULL value.
 *
  */
+
 import kotlin.math.roundToInt
+import java.io.File
 
 
 const val TAVERN_NAME = "Taernyl's Folly"
 
 var playerGold = 10
 var playerSilver = 10
+val patronList = mutableListOf("Eli", "Mordoc", "Sophie")
+val lastName = listOf("Ironfoot", "Fernsworth", "Baggins")
+val uniquePatrons = mutableSetOf<String>()
+val menuList = File("data/tavern-menu-items.txt")
+    .readText()
+    .split("\n")
 
 fun main(args: Array<String>) {
-    placeOrder("Shandy,Dragon's Breath,5.91")
-//    placeOrder("Elixir,Shirley's Temple,4.12")
+    (0..9).forEach {
+        val first = patronList.shuffled().first()
+        val last = lastName.shuffled().first()
+        val name = "$first $last"
+        uniquePatrons += name
+    }
+    //println(uniquePatrons)
+
+    var orderCount = 0
+    while (orderCount <= 9) {
+        placeOrder(uniquePatrons.shuffled().first(),
+            menuList.shuffled().first())
+        orderCount++
+    }
 }
 
 // function to place an order from menu items
-private fun placeOrder(menuData: String) {
+private fun placeOrder(patronName: String, menuData: String) {
     val indexOfApostrophe = TAVERN_NAME.indexOf('\'')
     val tavernMaster = TAVERN_NAME.substring(0 until indexOfApostrophe)
-    println("Madrigal speaks with $tavernMaster about their order.")
-
-    /*
-     the below info is separating the menu item by the comma(,)
-     and grabs the info via array index notation.
-    val data = menuData.split(',')
-    val type = data[0]
-    val name = data[1]
-    val price = data[2]
-    */
+    println("$patronName speaks with $tavernMaster about their order.")
 
     // using deconstruction, also known assigning multiple variables
     val (type, name, price) = menuData.split(',')
-    val message = "Madrigal buys a $name ($type) for $price"
+    val message = "$patronName buys a $name ($type) for $price"
     println(message)
 
-    performPurchase(price.toDouble())
-
-    /*
-        need a check for dragon's breath
-        val phrase = "Ah, delicious $name!"
-        println("Madrigal exclaims: ${toDragonSpeak(phrase)}")
-     */
+    //performPurchase(price.toDouble())
 
     val phrase = if (name == "Dragon's Breath") {
-        "Madrigal exclaims ${toDragonSpeak("Ah, delicious $name!")}"
+        "$patronName exclaims ${toDragonSpeak("Ah, delicious $name!")}"
     } else {
-        "Madrigal says: Thanks for the $name."
+        "$patronName says: Thanks for the $name."
     }
 
     println(phrase)
@@ -171,4 +176,65 @@ private fun displayBalance() {
             pipe but not as intricate as what can be done with the if else
 
         Double Bang Operator
-     */
+
+      lists are either mutable or not depending on the type of list called.
+
+    */
+
+    /*
+    THE COMMENTED OUT CODE BELOW ARE OTHER WAYS TO ACHIEVE SIMILAR
+      RESULTS AS THE MAIN FUNCTION
+
+
+    if (patronList.contains("Eli")) {
+        println("The tavern master says: Eli's in the back playing cards.")
+    } else {
+        println("the tavern mastre says: Eli isn't here")
+    }
+
+    if (patronList.containsAll(listOf("Sophie", "Mordoc"))) {
+        println("The tavern master says: Yea, they're seated by the stew kettle.")
+    } else {
+        println("the tavern master says: Nay, they departed hours ago.")
+    }
+
+    placeOrder("Elixir,Shirley's Temple,4.12")
+
+
+    println(patronList)
+    patronList.remove("Eli")
+    patronList.add("Alex")
+    patronList.add(0, "Alex")
+    patronList[0] = "Alexis"
+    println(patronList)
+
+
+
+
+
+    need a check for dragon's breath
+    val phrase = "Ah, delicious $name!"
+    println("Madrigal exclaims: ${toDragonSpeak(phrase)}")
+
+
+     the below info is separating the menu item by the comma(,)
+     and grabs the info via array index notation.
+    val data = menuData.split(',')
+    val type = data[0]
+    val name = data[1]
+    val price = data[2]
+
+
+        for (patron in patronList) {
+        println("Good evening, $patron")
+    }
+
+    patronList.forEachIndexed { index, patron ->
+        println("Good evening, $patron - you're #${index + 1} in line. ")
+        placeOrder(patron, menuList.shuffled().first())
+    }
+
+    menuList.forEachIndexed { index, data ->
+        println("$index : $data")
+    }
+    */
