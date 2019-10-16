@@ -30,6 +30,8 @@ and exceptions. There are no challenges at the end of these chapters. To see wor
 	Tavern.kt
 	SwordJuggler.kt
 
+Chapter 9 also has no challenges and therefore nothing to branch. Any notes will be below the code.
+
 # Challenges
 
 challenges are being kept in a separate branch. to view them please review the list section
