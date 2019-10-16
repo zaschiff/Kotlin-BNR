@@ -28,7 +28,7 @@ fun main(args: Array<String>) {
     // CHALLENGE: FORMATTED TAVERN MENU
     val greeting = "*** Welcome to $TAVERN_NAME ***"
     val menuWidth = greeting.length
-    println(greeting + "\n")
+    println(greeting)
     (0..9).forEach {
         val first = patronList.shuffled().first()
         val last = lastName.shuffled().first()
@@ -36,14 +36,27 @@ fun main(args: Array<String>) {
         uniquePatrons += name
     }
 
-    // CHALLENEGE 9: FORMATTED TAVERN MENU
-    for (item in menuList) {
-        val (_, name, price) = item.split(",")
-        val capName = capitalizeWord(name)
-        val pad = menuWidth - price.length
-        val menuItem = capName.capitalize().padEnd(pad, '.') + price
-        println(menuItem)
+    // CHALLENEGE: FORMATTED TAVERN MENU
+    // CHALLENGE: ADVANCED FORMATTED TAVERN MENU
+    val currentMenu = menuList.toMutableList()
+    while (currentMenu.isNotEmpty()) {
+        var (category) = currentMenu[0].split(',')
+        val catName = "~[$category]~"
+        val pad = (menuWidth/2) + (catName.length/2)
+        val catDisplay = catName.padStart(pad, ' ')
+        println(catDisplay)
+        for (i in (0 until currentMenu.size).reversed()) {
+            val (type, name, price) = currentMenu[i].split(",")
+            if (type == category) {
+                val capName = capitalizeWord(name)
+                val pad = menuWidth - price.length
+                val menuItem = capName.capitalize().padEnd(pad, '.') + price
+                println(menuItem)
+                currentMenu.removeAt(i)
+            }
+        }
     }
+    println()
 
     var orderCount = 0
     while (orderCount <= 9) {
