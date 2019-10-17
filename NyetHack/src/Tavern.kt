@@ -22,6 +22,7 @@ val menuList = File("data/tavern-menu-items.txt")
     .readText()
     .split("\n")
 val patronGold = mutableMapOf<String, Double>()
+val bounceList = mutableListOf<String>()
 
 fun main(args: Array<String>) {
     (0..9).forEach {
@@ -54,6 +55,9 @@ fun main(args: Array<String>) {
     }
 
     displayPatronBalances()
+    println()
+    // CHALLENGE: TAVERN BOUNCER
+    bouncer()
 }
 
 // function to place an order from menu items
@@ -80,7 +84,32 @@ private fun placeOrder(patronName: String, menuData: String) {
 
 private fun performPurchase(price: Double, patronName: String) {
     val totalPurse = patronGold.getValue(patronName)
-    patronGold[patronName] = totalPurse - price
+    if ((totalPurse - price) > 0) {
+        patronGold[patronName] = totalPurse - price
+    } else {
+        patronGold[patronName] = 0.0
+    }
+}
+
+// CHALLENGE: TAVERN BOUNCER
+private fun bouncer(){
+    patronGold.forEach {patron, balance ->
+        if (balance <= 0 ) {
+//            println("$patron $balance")
+            bounceList += patron
+        }
+    }
+
+    bounceList.forEach { patron ->
+        println("$patron has no money, they are no longer welcome and have been remove" +
+                    " from the tavern.")
+        patronGold.remove(patron)
+        uniquePatrons.remove(patron)
+    }
+
+//    println(bounceList)
+//    println(uniquePatrons)
+//    println(patronGold)
 }
 
 //function to show string's replace funtion and make a new dragon
