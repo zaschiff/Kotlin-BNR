@@ -1,4 +1,4 @@
-/*
+package com.bignerdranch.nyethack/*
 *
 * File: NyetHack/SwordJuggler.kt
 * Author: Zach Schiff
@@ -30,10 +30,10 @@ fun main(args: Array<String>) {
 
 // simple function to throw an exception
 fun proficiencyCheck(swordsJuggling: Int?) {
-    checkNotNull(swordsJuggling, { "Player cannot juggle swords" })
+    checkNotNull(swordsJuggling, { "com.bignerdranch.nyethack.Player cannot juggle swords" })
 }
 
 // custom exception built as a class which is covered in chapter 12, which
 // is later after this chapter (6).
 class UnskilledSwordJugglingException() :
-        IllegalStateException("Player cannot juggle swords")
+        IllegalStateException("com.bignerdranch.nyethack.Player cannot juggle swords")

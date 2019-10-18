@@ -1,4 +1,4 @@
-/*
+package com.bignerdranch.nyethack/*
 *
 * Application: NyetHack/Tavern.kt
 * Author: Zach Schiff
@@ -9,7 +9,6 @@
 *
  */
 
-import kotlin.math.roundToInt
 import java.io.File
 
 
@@ -48,8 +47,10 @@ fun main(args: Array<String>) {
     }
     var orderCount = 0
     while (orderCount <= 9) {
-        placeOrder(uniquePatrons.shuffled().first(),
-            menuList.shuffled().first())
+        placeOrder(
+            uniquePatrons.shuffled().first(),
+            menuList.shuffled().first()
+        )
         orderCount++
     }
 
@@ -192,15 +193,15 @@ private fun displayPatronBalances() {
     THE COMMENTED OUT CODE BELOW ARE OTHER WAYS TO ACHIEVE SIMILAR
       RESULTS AS THE MAIN FUNCTION
 
-    placeOrder("Elixir,Shirley's Temple,4.12")
+    com.bignerdranch.nyethack.placeOrder("Elixir,Shirley's Temple,4.12")
 
 
-    println(patronList)
-    patronList.remove("Eli")
-    patronList.add("Alex")
-    patronList.add(0, "Alex")
-    patronList[0] = "Alexis"
-    println(patronList)
+    println(com.bignerdranch.nyethack.getPatronList)
+    com.bignerdranch.nyethack.getPatronList.remove("Eli")
+    com.bignerdranch.nyethack.getPatronList.add("Alex")
+    com.bignerdranch.nyethack.getPatronList.add(0, "Alex")
+    com.bignerdranch.nyethack.getPatronList[0] = "Alexis"
+    println(com.bignerdranch.nyethack.getPatronList)
 
 
 
@@ -208,7 +209,7 @@ private fun displayPatronBalances() {
 
     need a check for dragon's breath
     val phrase = "Ah, delicious $name!"
-    println("Madrigal exclaims: ${toDragonSpeak(phrase)}")
+    println("Madrigal exclaims: ${com.bignerdranch.nyethack.toDragonSpeak(phrase)}")
 
 
      the below info is separating the menu item by the comma(,)
@@ -218,22 +219,22 @@ private fun displayPatronBalances() {
     val name = data[1]
     val price = data[2]
 
-    for (patron in patronList) {
+    for (patron in com.bignerdranch.nyethack.getPatronList) {
         println("Good evening, $patron")
     }
 
-    patronList.forEachIndexed { index, patron ->
+    com.bignerdranch.nyethack.getPatronList.forEachIndexed { index, patron ->
         println("Good evening, $patron - you're #${index + 1} in line. ")
-        placeOrder(patron, menuList.shuffled().first())
+        com.bignerdranch.nyethack.placeOrder(patron, com.bignerdranch.nyethack.getMenuList.shuffled().first())
     }
 
-    menuList.forEachIndexed { index, data ->
+    com.bignerdranch.nyethack.getMenuList.forEachIndexed { index, data ->
         println("$index : $data")
     }
 
    the below functions were tied to one person not the patron's list.
    new function will be able to utilize the patron's gold map
-   fun performPurchase (price: Double) {
+   fun com.bignerdranch.nyethack.performPurchase (price: Double) {
         displayBalance()
         val totalPurse = playerGold + (playerSilver / 100.0)
         println("Total purse: $totalPurse")
@@ -250,6 +251,6 @@ private fun displayPatronBalances() {
     }
 
     private fun displayBalance() {
-        println("Player's purse balance: Gold: $playerGold, Silver: $playerSilver")
+        println("com.bignerdranch.nyethack.Player's purse balance: Gold: $playerGold, Silver: $playerSilver")
     }
     */
