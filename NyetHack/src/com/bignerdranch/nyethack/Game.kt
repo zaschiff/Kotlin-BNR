@@ -16,6 +16,10 @@ fun main(args: Array<String>) {
     val player = Player("Madrigal")
     player.castFireball()
 
+    var currentRoom: Room =  TownSquare()
+    println(currentRoom.description())
+    println(currentRoom.load())
+
     //refactored Aura calls into a class function
     val auraColor = player.auraColor()
 
