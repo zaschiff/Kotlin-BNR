@@ -16,6 +16,6 @@ open class TownSquare : Room("Town Square") {
     final override fun load() =
         "the villagers rally and cheer as you enter!\n${ringBell()}"
 
-    private fun ringBell() =
+    fun ringBell() =
         "The bell tower announces your arrival. $bellSound"
 }

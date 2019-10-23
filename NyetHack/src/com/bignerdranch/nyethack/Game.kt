@@ -16,6 +16,7 @@ fun main(args: Array<String>) {
 }
 
 object Game {
+    var playingGame = true
     private val player = Player("Madrigal")
     private var currentRoom: Room = TownSquare()
 
@@ -30,7 +31,7 @@ object Game {
     }
 
     fun play() {
-        while (true) {
+        while (playingGame) {
             //play Nyethack
             println(currentRoom.description())
             println(currentRoom.load())
@@ -39,7 +40,14 @@ object Game {
             printPlayerStatus(player)
 
             print("> Enter your command: ")
-            println(GameInput(readLine()).processCommand())
+            // CHALLENGE: "Quit" Command
+            val command = GameInput(readLine()).processCommand()
+            if (command.split(" ")[0] == "Quitting") {
+                println(command)
+                break
+            } else {
+                println(command)
+            }
         }
     }
 
@@ -52,17 +60,50 @@ object Game {
         println("${player.name} ${player.formatHealthStatus()}")
     }
 
-    private class GameInput (arg: String?) {
+    private class GameInput(arg: String?) {
         private val input = arg ?: ""
         val command = input.split(" ")[0]
         val argument = input.split(" ").getOrElse(1, { "" })
 
         fun processCommand() =
             when (command.toLowerCase()) {
+                "move" -> move(argument)
+                // CHALLENGE: "Quit" Command
+                // CHALLENGE: Implementing a World Map
+                // CHALLENGE: RING the Bell
+                "ring" ->
+                    if (currentRoom is TownSquare)
+                        {
+                            (currentRoom as TownSquare).ringBell()
+                        } else {
+                            "There is no bell here."
+                        }
+                "map" -> magicMap()
+                "quit" -> endGame()
+                "exit" -> endGame()
                 else -> commandNotFound()
             }
 
         private fun commandNotFound() = "I'm not quite sure what you're trying to do!"
+
+        private fun endGame() = "Quitting Game...Well done! Thanks for Playing! See you soon"
+
+        private fun magicMap(): String {
+            var printWorldMap = ""
+            for (row in worldMap) {
+                for (col in row) {
+                    if (col == currentRoom) {
+                        printWorldMap += "X "
+                    }
+                    else {
+                        printWorldMap += "O "
+                    }
+                }
+                printWorldMap = printWorldMap.trim()
+                printWorldMap += "\n"
+            }
+            return printWorldMap
+        }
     }
 
     private fun move(directionInput: String) =
@@ -76,8 +117,8 @@ object Game {
             val newRoom = worldMap[newPosition.y][newPosition.x]
             player.currentPosition = newPosition
             currentRoom = newRoom
-            "OK, you move $direction to the ${newRoom.name}.\n{$newRoom.load()}"
-        } catch(e: Exception) {
+            "OK, you move $direction to the ${newRoom.name}.\n${newRoom.load()}"
+        } catch (e: Exception) {
             "Invalid direction: $directionInput."
         }
 }
