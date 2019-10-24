@@ -44,4 +44,9 @@ Chapter 3: Game.kt
 Chapter 4: Game.kt  
 Chapter 7: Tavern.kt  
 Chapter 8: Tavern.kt  
-Chapter 10: Tavern.kt
+Chapter 9: Tavern.kt  
+Chapter 10: Tavern.kt  
+Chapter 11: Tavern.kt  
+Chapter 13: Riddle of Excalibur Project folder  
+Chapter 15: Game.kt, Room.kt  
+Chapter 18: FrameExt.kt, Tavren.kt  
