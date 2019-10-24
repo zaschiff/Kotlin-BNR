@@ -12,6 +12,18 @@ package com.bignerdranch.nyethack/*
 import java.io.File
 import com.bignerdranch.nyethack.extensions.random as randomizer
 
+// CHALLENGE: toDragonSpeak Extension
+private fun String.toDragonSpeak() =
+    this.replace(Regex("[aeiou]")) {
+        when (it.value) {
+            "a" -> "4"
+            "e" -> "3"
+            "i" -> "1"
+            "o" -> "0"
+            "u" -> "|_|"
+            else -> it.value
+        }
+    }
 
 const val TAVERN_NAME = "Taernyl's Folly"
 
@@ -72,7 +84,7 @@ private fun placeOrder(patronName: String, menuData: String) {
     performPurchase(price.toDouble(), patronName)
 
     val phrase = if (name == "Dragon's Breath") {
-        "$patronName exclaims ${toDragonSpeak("Ah, delicious $name!")}"
+        "$patronName exclaims ${"Ah, delicious $name!".toDragonSpeak()}"
     } else {
         "$patronName says: Thanks for the $name."
     }
@@ -84,20 +96,6 @@ private fun performPurchase(price: Double, patronName: String) {
     val totalPurse = patronGold.getValue(patronName)
     patronGold[patronName] = totalPurse - price
 }
-
-//function to show string's replace funtion and make a new dragon
-//speak translator
-private fun toDragonSpeak(phrase : String) =
-    phrase.replace(Regex("[aeiou]")) {
-        when (it.value) {
-            "a" -> "4"
-            "e" -> "3"
-            "i" -> "1"
-            "o" -> "0"
-            "u" -> "|_|"
-            else -> it.value
-        }
-    }
 
 private fun displayPatronBalances() {
     patronGold.forEach { patron, balance ->
