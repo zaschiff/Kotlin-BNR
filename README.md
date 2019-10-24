@@ -50,3 +50,8 @@ Chapter 11: Tavern.kt
 Chapter 13: Riddle of Excalibur Project folder  
 Chapter 15: Game.kt, Room.kt  
 Chapter 18: FrameExt.kt, Tavren.kt  
+
+# Book Remainder
+
+The remainder of the book is chapter 19 - 22.  At this point in the book, we have completed
+all work associatde with NyetHack and Sandbox. the remaining work will be done in the repl.
