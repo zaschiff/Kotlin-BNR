@@ -54,4 +54,4 @@ Chapter 18: FrameExt.kt, Tavren.kt
 # Book Remainder
 
 The remainder of the book is chapter 19 - 22.  At this point in the book, we have completed
-all work associatde with NyetHack and Sandbox. the remaining work will be done in the repl.
+all work associated with NyetHack and Sandbox. The remaining work will be done in the repl.
