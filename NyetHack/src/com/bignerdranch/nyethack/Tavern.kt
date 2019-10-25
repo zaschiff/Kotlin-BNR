@@ -17,19 +17,25 @@ const val TAVERN_NAME = "Taernyl's Folly"
 
 val patronList = mutableListOf("Eli", "Mordoc", "Sophie")
 val lastName = listOf("Ironfoot", "Fernsworth", "Baggins")
-val uniquePatrons = mutableSetOf<String>()
 val menuList = File("data/tavern-menu-items.txt")
     .readText()
     .split("\n")
-val patronGold = mutableMapOf<String, Double>()
+var patronGold = mutableMapOf<String, Double>()
 
 fun main(args: Array<String>) {
-    (0..9).forEach {
+
+    // CHALLENGE: Applying Functional Programming to Tavern.kt
+//    (0..9).forEach {
+//        val first = patronList.randomizer()
+//        val last = lastName.randomizer()
+//        val name = "$first $last"
+//        uniquePatrons += name
+//    }
+    val uniquePatrons: Set<String> = generateSequence {
         val first = patronList.randomizer()
         val last = lastName.randomizer()
-        val name = "$first $last"
-        uniquePatrons += name
-    }
+        "$first $last"
+    }.distinct().take(9).toSet()
 
     if (patronList.contains("Eli")) {
         println("The tavern master says: Eli's in the back playing cards.")
@@ -43,9 +49,13 @@ fun main(args: Array<String>) {
         println("the tavern master says: Nay, they departed hours ago.")
     }
 
-    uniquePatrons.forEach {
-        patronGold[it] = 6.0
-    }
+    // CHALLENGE: Applying Functional Programming to Tavern.kt
+//    uniquePatrons.forEach {
+//        patronGold[it] = 6.0
+//    }
+
+    patronGold = uniquePatrons.map { it to 10.0 }.toMap() as MutableMap<String, Double>
+
     var orderCount = 0
     while (orderCount <= 9) {
         placeOrder(
