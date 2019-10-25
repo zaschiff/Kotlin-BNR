@@ -49,7 +49,8 @@ Chapter 10: Tavern.kt
 Chapter 11: Tavern.kt  
 Chapter 13: Riddle of Excalibur Project folder  
 Chapter 15: Game.kt, Room.kt  
-Chapter 18: FrameExt.kt, Tavren.kt  
+Chapter 18: FrameExt.kt, Tavren.kt   
+Chapter 19: Tavern.kt, Functional Programming Project Folder
 
 # Book Remainder
 
