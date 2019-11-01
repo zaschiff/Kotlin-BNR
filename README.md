@@ -32,6 +32,11 @@ and exceptions. There are no challenges at the end of these chapters. To see wor
 
 Chapter 9 also has no challenges and therefore nothing to branch. Any notes will be below the code.
 
+## Samodelkin
+
+This was the project work for chapter 21. It is an adroid applicaiton written in kotlin. It can be opened in Android Studio.
+The application is for character creation only. Nothing more.
+
 # Challenges
 
 challenges are being kept in a separate branch. to view them please review the list section
