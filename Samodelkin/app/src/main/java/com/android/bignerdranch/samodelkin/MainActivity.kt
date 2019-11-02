@@ -25,14 +25,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        characterData = savedInstanceState?.characterData ?:
-            CharacterGenerator.generate()
+        // CHALLENGE:Live Data
+        savedInstanceState?.let { characterData = it.characterData }
+            ?: updateFromWeb()
 
         generateButton.setOnClickListener {
-            GlobalScope.launch(Dispatchers.Main) {
-                characterData = fetchCharacterdata().await()
-                displayChracterData()
-            }
+            updateFromWeb()
         }
 
         displayChracterData()
@@ -45,6 +43,19 @@ class MainActivity : AppCompatActivity() {
             dexterityTextView.text = dex
             wisdomTextView.text = wis
             strengthTextView.text = str
+        }
+    }
+
+    private fun updateFromWeb() {
+        GlobalScope.launch(Dispatchers.Main) {
+            characterData = fetchCharacterdata().await()
+            // CHALLENGE: Minimum Strength
+            characterData.str.toInt().let {
+                when {
+                    it < 10 -> updateFromWeb()
+                    else -> displayChracterData()
+                }
+            }
         }
     }
 }
